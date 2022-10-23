@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def fill_database(request):
+    return render(request, 'fill-products.html')

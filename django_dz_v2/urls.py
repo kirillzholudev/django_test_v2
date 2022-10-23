@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about', views.about, name='about'),
     path('auth/', include('authentication.urls')),
+    path('shop/', include('shop.urls')),
 ]
