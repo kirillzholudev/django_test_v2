@@ -132,20 +132,20 @@ def auto_payment_unpaid_orders(user: User):
 
 
 @receiver(post_save, sender=OrderItem)
-def recalculate_order_amount_after_save(sender, instanse, **kwargs):
-    order = instanse.order
+def recalculate_order_amount_after_save(instance, **kwargs):
+    order = instance.order
     order.amount = order.get_amount()
     order.save()
 
 
 @receiver(post_delete, sender=OrderItem)
-def recalculate_order_amount_after_delete(sender, instanse, **kwargs):
-    order = instanse.order
+def recalculate_order_amount_after_delete(instance, **kwargs):
+    order = instance.order
     order.amount = order.get_amount()
     order.save()
 
 
 @receiver(post_save, sender=Payment)
-def auto_payment(sender, instanse, **kwargs):
-    user = instanse.user
+def auto_payment(instance, **kwargs):
+    user = instance.user
     auto_payment_unpaid_orders(user)
